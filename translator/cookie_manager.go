@@ -44,6 +44,13 @@ func getNextCookie() (string, error) {
 	}
 	return "", fmt.Errorf("no valid cookies available")
 }
+func GetNextCookie() string {
+	c, err := getNextCookie()
+	if err != nil {
+		return ""
+	}
+	return c
+}
 
 func markCookieInvalid(cookie string) {
 	if !stringSliceContains(invalidCookies, cookie) {

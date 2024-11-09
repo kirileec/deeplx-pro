@@ -9,6 +9,7 @@ type Config struct {
 	Port         string
 	DeepLCookies []string
 	ProxyList    []string
+	Tokens       []string
 }
 
 var AppConfig Config
@@ -18,6 +19,7 @@ func InitConfig() {
 		Port:         getEnv("PORT", "9000"),
 		DeepLCookies: getEnvAsSlice("DEEPL_COOKIES", []string{}),
 		ProxyList:    getEnvAsSlice("PROXY_LIST", []string{}),
+		Tokens:       getEnvAsSlice("TOKENS", []string{}),
 	}
 }
 

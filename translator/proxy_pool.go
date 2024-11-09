@@ -27,7 +27,7 @@ func validateProxies() {
 	}
 }
 
-func GetNextProxy() (string, error) {
+func getNextProxy() (string, error) {
 	if len(proxies) == 0 {
 		return "", nil
 	}
@@ -42,6 +42,13 @@ func GetNextProxy() (string, error) {
 		attempts++
 	}
 	return "", fmt.Errorf("no valid proxies available")
+}
+func GetNextProxy() string {
+	p, err := getNextProxy()
+	if err != nil {
+		return ""
+	}
+	return p
 }
 
 func MarkProxyInvalid(proxy string) {

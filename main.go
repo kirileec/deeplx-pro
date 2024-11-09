@@ -16,7 +16,6 @@ import (
 func main() {
 	// 加载环境变量
 	godotenv.Load()
-
 	// 初始化配置
 	config.InitConfig()
 
@@ -31,7 +30,7 @@ func main() {
 	log.Printf("Server is running on http://localhost:%s", port)
 	log.Printf("DEEPL_COOKIES: %s", os.Getenv("DEEPL_COOKIES"))
 	log.Printf("PROXY_LIST: %s", os.Getenv("PROXY_LIST"))
-
+	log.Printf("TOKENS: %s", os.Getenv("TOKENS"))
 	// 设置并启动HTTP服务器
 	s := &http.Server{
 		Addr:           ":" + port,

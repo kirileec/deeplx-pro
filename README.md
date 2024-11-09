@@ -11,8 +11,9 @@
 1. 进入 [DeepL](https://www.deepl.com) 网站，按下 `F12` 打开开发者工具，选择 "Application" 标签页。
 2. 复制 `Cookies` 下的 `dl_session` 。
 
-2024-11: 更新 dl_session 目前在uuid前多了个 `fa.` 这样的前缀, 因此去掉源码里的36长度的判断
-2024-11: 更新Dockerfile, 和action配置
+- 2024-11: 更新 dl_session 目前在uuid前多了个 `fa.` 这样的前缀, 因此去掉源码里的36长度的判断
+- 2024-11: 更新Dockerfile, 和action配置
+- 2024-11: 修改为使用 OwO-Network/DeepLX , 并加入了TOKEN校验
 
 
 ## 环境变量
@@ -23,9 +24,11 @@
 DEEPL_COOKIES=
 PORT=9000
 PROXY_LIST=
+TOKENS=
 ```
 
 - **DEEPL_COOKIES**: （必需）通过浏览器获取的 `dl_session` Cookie 值（多个值用逗号分隔）。
+- **TOKENS**: (可选)自定义鉴权TOKEN（多个值用逗号分隔）。
 - **PORT**: （可选）服务器运行端口，默认为 `9000`。
 - **PROXY_LIST**: （可选）代理列表。
 
@@ -68,9 +71,9 @@ docker run -d --name deeplx-pro -p 9000:9000 -e DEEPL_COOKIES="<your_dl_session_
 2. 启动服务器并发送 POST 请求到 `http://localhost:9000/translate`。
 3. 请求体应包含以下字段：
    - `text`：要翻译的文本内容。
-   - `source_lang`：源语言（可选，默认为 'AUTO'）。
+   - `source_lang`：源语言（可选，默认为 'AUTO' / 'auto' -> 'EN'）。
    - `target_lang`：目标语言（可选，默认为 'ZH'）。
-   - `quality`：翻译质量（可选），可选值为 'normal' 或 'fast'，默认为 'normal'。
+   - `tag_handling`：标签处理（可选），可选值为 'html' 或 'xml'，默认为 空。
 
 #### 示例请求
 
