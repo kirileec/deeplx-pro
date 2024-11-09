@@ -1,5 +1,7 @@
 # deeplx-pro
 
+[![Docker Image CI](https://github.com/kirileec/deeplx-pro/actions/workflows/docker-image.yml/badge.svg)](https://github.com/kirileec/deeplx-pro/actions/workflows/docker-image.yml)
+
 ## 简介
 
 `deeplx-pro` 是一个非官方的 DeepL web 翻译接口封装，允许通过 HTTP 请求访问 DeepL 翻译服务。
