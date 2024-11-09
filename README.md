@@ -1,7 +1,5 @@
 # deeplx-pro
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fxiaozhou26%2Fdeeplx-pro&env=DEEPL_COOKIES&project-name=deeplx-pro&repository-name=deeplx-pro)
-
 ## 简介
 
 `deeplx-pro` 是一个非官方的 DeepL web 翻译接口封装，允许通过 HTTP 请求访问 DeepL 翻译服务。
@@ -13,7 +11,9 @@
 1. 进入 [DeepL](https://www.deepl.com) 网站，按下 `F12` 打开开发者工具，选择 "Application" 标签页。
 2. 复制 `Cookies` 下的 `dl_session` 。
 
-   ![获取 DeepL dl_session](https://cdn.jsdmirror.com/gh/xiaozhou26/tuph@main/images/2024-03-07%20120245.png)
+2024-11: 更新 dl_session 目前在uuid前多了个 `fa.` 这样的前缀, 因此去掉源码里的36长度的判断
+2024-11: 更新Dockerfile, 和action配置
+
 
 ## 环境变量
 
@@ -44,7 +44,7 @@ DEEPL_COOKIES="1560565165-1811-481,515156-561561-11651"
 你可以通过 Docker 轻松部署 `deeplx-pro`：
 
 ```bash
-docker run -d --name deeplx-pro -p 9000:9000 -e DEEPL_COOKIES="<your_dl_session_values>" xiaoxiaofeihh/deeplx-pro:latest
+docker run -d --name deeplx-pro -p 9000:9000 -e DEEPL_COOKIES="<your_dl_session_values>" slk1133/deeplx-pro:latest
 ```
 
 ### Windows 平台运行

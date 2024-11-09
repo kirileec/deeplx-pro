@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   deeplx-pro:
-    image: xiaoxiaofeihh/deeplx-pro-go:latest
+    image: slk1133/deeplx-pro:latest
     container_name: deeplx-pro
     ports:
       - "9000:9000"

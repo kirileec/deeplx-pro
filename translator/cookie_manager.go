@@ -19,11 +19,12 @@ func validateCookies() {
 	cookieList := strings.Split(cookieStr, ",")
 	for _, cookie := range cookieList {
 		cookie = strings.TrimSpace(cookie)
-		if len(cookie) == 36 {
-			cookies = append(cookies, cookie)
-		} else {
-			log.Printf("Invalid cookie format: %s", cookie)
-		}
+		cookies = append(cookies, cookie)
+		// if len(cookie) == 39 {
+		// 	cookies = append(cookies, cookie)
+		// } else {
+		// 	log.Printf("Invalid cookie format: %s", cookie)
+		// }
 	}
 	if len(cookies) == 0 {
 		log.Fatal("No valid cookies provided. Please check your DEEPL_COOKIES environment variable.")

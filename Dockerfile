@@ -1,9 +1,8 @@
-# 使用 Go 1.22 官方镜像作为构建环境
-FROM golang:1.22 AS builder
+FROM golang:alpine AS builder
 
 # 禁用 CGO
 ENV CGO_ENABLED=0
-
+RUN apk --no-cache add tzdata
 # 设置工作目录
 WORKDIR /app
 
@@ -15,8 +14,11 @@ RUN go mod download
 COPY . .
 RUN go build -ldflags "-s -w" -o /app/deeplx-pro .
 
-# 使用 Alpine Linux 作为最终镜像
-FROM alpine:latest
+# 运行: 使用scratch作为基础镜像
+FROM scratch as prod
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+# 在build阶段, 复制时区配置到镜像的/etc/localtime
+COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 设置工作目录
 WORKDIR /app
