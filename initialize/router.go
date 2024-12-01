@@ -75,12 +75,15 @@ func InitRouter() *gin.Engine {
 				"message": err.Error()})
 			return
 		}
-		if reqBody.SourceLang == "" {
-			reqBody.SourceLang = "auto"
-		}
-		// 检查源语言是否为"auto"
-		if reqBody.SourceLang == "auto" || reqBody.SourceLang == "AUTO" {
-			reqBody.SourceLang = "EN"
+		//if reqBody.SourceLang == "" {
+		//	reqBody.SourceLang = "auto"
+		//}
+		//// 检查源语言是否为"auto"
+		//if reqBody.SourceLang == "auto" || reqBody.SourceLang == "AUTO" {
+		//	reqBody.SourceLang = "EN"
+		//}
+		if reqBody.TargetLang == "" {
+			reqBody.TargetLang = "ZH"
 		}
 		if reqBody.TagHandling != "" && reqBody.TagHandling != "html" && reqBody.TagHandling != "xml" {
 			c.JSON(http.StatusBadRequest, gin.H{

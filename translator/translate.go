@@ -2,6 +2,7 @@ package translator
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"github.com/andybalholm/brotli"
 	"github.com/imroc/req/v3"
@@ -243,10 +244,11 @@ func TranslateByDeepLX(sourceLang, targetLang, text string, tagHandling string, 
 	}
 
 	if translatedText == "" {
+
 		return DeepLXTranslationResult{
 			Code:    http.StatusServiceUnavailable,
 			Message: "Translation failed",
-		}, nil
+		}, errors.New(result.Get("error.message").String() + ":" + result.Get("error.data.what").String())
 	}
 
 	return DeepLXTranslationResult{
