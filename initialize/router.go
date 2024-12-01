@@ -2,6 +2,7 @@ package initialize
 
 import (
 	"deeplx-pro/translator"
+	"github.com/gin-contrib/cors"
 	"net/http"
 	"strings"
 
@@ -46,7 +47,7 @@ func authMiddleware(checkToken func(string) bool, hasToken func() bool) gin.Hand
 func InitRouter() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
-
+	r.Use(cors.Default())
 	// 根路由，返回欢迎信息
 	r.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "Welcome to deeplx-pro")
