@@ -85,6 +85,9 @@ func InitRouter() *gin.Engine {
 		if reqBody.TargetLang == "" {
 			reqBody.TargetLang = "ZH"
 		}
+		if reqBody.SourceLang == "" {
+			reqBody.SourceLang = "auto"
+		}
 		if reqBody.TagHandling != "" && reqBody.TagHandling != "html" && reqBody.TagHandling != "xml" {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"code":    http.StatusBadRequest,
